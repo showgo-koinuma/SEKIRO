@@ -28,6 +28,7 @@ protected:
 	UInputAction* MoveIA;
 
 	// InputMove イベントハンドラー関数
+	UFUNCTION()
 	void Move(const FInputActionValue& Value);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Paramater")

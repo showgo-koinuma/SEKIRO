@@ -10,10 +10,15 @@
 UENUM(BlueprintType)
 enum class ECharacterState : uint8
 {
+	// 通常状態
 	Normal,
+	// 攻撃中
 	Attack,
+	// 防御中
 	Defense,
+	// 攻撃を食らっている
 	Hit,
+	// Dodge中
 	Dodge
 };
 
@@ -42,6 +47,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UCharacterAttributeSet* CharacterAttributeSet;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
+	TArray<TSubclassOf<UGameplayAbility>> PlayerGameplayAbilities;
+
 	// WaitInputのTaskを使うAbility
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
 	TArray<TSubclassOf<UWaitInputGameplayAbility>> WaitInputAbilities;
@@ -55,6 +63,10 @@ protected:
 	void BindASCInput();
 
 	bool bASCInputBound;
+
+	// 攻撃を受ける
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	bool HitAttack(float Damage, float Impact, FVector AttackDirection);
 	
 	void SetLocalVelocity();
 

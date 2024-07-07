@@ -14,7 +14,14 @@ ACharacterBase::ACharacterBase()
 void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
+		
+	// 通常AbilityのGiveAbility
+	for (auto Ability : PlayerGameplayAbilities)
+	{
+		AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(Ability.GetDefaultObject(), 0, -1, this));
+	}
 
+	// WaitInputのGiveAbility
 	if (AbilitySystemComponent)
 	{
 		if (HasAuthority() && WaitInputAbilities.Num() > 0)
@@ -83,6 +90,11 @@ void ACharacterBase::ApplyCharacterState()
 	{
 		CharacterState = ECharacterState::Normal;
 	}
+}
+
+bool ACharacterBase::HitAttack_Implementation(float Damage, float Impact, FVector AttackDirection)
+{
+	return false;
 }
 
 void ACharacterBase::SetLocalVelocity()
