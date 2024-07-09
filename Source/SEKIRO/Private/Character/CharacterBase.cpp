@@ -16,7 +16,7 @@ void ACharacterBase::BeginPlay()
 	Super::BeginPlay();
 		
 	// 通常AbilityのGiveAbility
-	for (auto Ability : PlayerGameplayAbilities)
+	for (auto Ability : CharacterGameplayAbilities)
 	{
 		AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(Ability.GetDefaultObject(), 0, -1, this));
 	}
@@ -74,17 +74,21 @@ void ACharacterBase::BindASCInput()
 
 void ACharacterBase::ApplyCharacterState()
 {
-	if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Attack"))))
+	if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Hit"))))
+	{
+		CharacterState = ECharacterState::Hit;
+	}
+	else if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Attack"))))
 	{
 		CharacterState = ECharacterState::Attack;
-	}
-	else if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Defense"))))
-	{
-		CharacterState = ECharacterState::Defense;
 	}
 	else if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Dodge"))))
 	{
 		CharacterState = ECharacterState::Dodge;
+	}
+	else if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Defense"))))
+	{
+		CharacterState = ECharacterState::Defense;
 	}
 	else
 	{
@@ -92,7 +96,7 @@ void ACharacterBase::ApplyCharacterState()
 	}
 }
 
-bool ACharacterBase::HitAttack_Implementation(float Damage, float Impact, FVector AttackDirection)
+bool ACharacterBase::HitAttack_Implementation(float Damage, float Impact, FVector AttackDirection, FVector HitPoint)
 {
 	return false;
 }

@@ -48,11 +48,14 @@ protected:
 	UCharacterAttributeSet* CharacterAttributeSet;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
-	TArray<TSubclassOf<UGameplayAbility>> PlayerGameplayAbilities;
+	TArray<TSubclassOf<UGameplayAbility>> CharacterGameplayAbilities;
 
 	// WaitInputのTaskを使うAbility
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
 	TArray<TSubclassOf<UWaitInputGameplayAbility>> WaitInputAbilities;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
+	TObjectPtr<UCapsuleComponent> WeaponCollisionCapsule;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ECharacterState CharacterState = ECharacterState::Normal;
@@ -66,7 +69,7 @@ protected:
 
 	// 攻撃を受ける
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	bool HitAttack(float Damage, float Impact, FVector AttackDirection);
+	bool HitAttack(float Damage, float Impact, FVector AttackDirection, FVector HitPoint);
 	
 	void SetLocalVelocity();
 
