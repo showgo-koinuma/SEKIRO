@@ -11,15 +11,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="920bd9b7-9b61-4d33-835a-a18842f30515" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BB_Enemy.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BTS_CheckDistance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BTS_SetFocus.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BTT_Attack.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BT_Enemy.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/BP_EnemyAIC.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/Enemy/GA_EnemyAttack.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/Enemy/GA_UsableWithBTBase.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/Enemy/GE_Parried.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/GE/GE_HitAttack.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/EnemyCharacter.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/EnemyCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SEKIRO/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SEKIRO/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Config/DefaultEditor.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEditor.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultGameplayTags.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultGameplayTags.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/BP_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/BP_Enemy.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Player/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Player/BP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/GA/Attack/GA_Attack_1_First.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/GA/Attack/GA_Attack_1_First.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/GA/GA_Defense.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/GA/GA_Defense.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Level/MainLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MainLevel.umap" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -458,6 +467,8 @@
       <workItem from="1720318612543" duration="5535000" />
       <workItem from="1720342383337" duration="3382000" />
       <workItem from="1720536997320" duration="2700000" />
+      <workItem from="1720688344544" duration="2200000" />
+      <workItem from="1720856116782" duration="3251000" />
     </task>
     <servers />
   </component>
