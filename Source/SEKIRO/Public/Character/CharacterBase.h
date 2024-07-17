@@ -3,7 +3,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "CharacterAttackParam.h"
 #include "CharacterAttributeSet.h"
+#include "CharacterParameter.h"
 #include "GAS/WaitInputGameplayAbility.h"
 #include "CharacterBase.generated.h"
 
@@ -57,6 +59,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
 	TObjectPtr<UCapsuleComponent> WeaponCollisionCapsule;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Parameter")
+	UCharacterParameter* CharacterParameter;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Parameter")
+	UCharacterAttackParam* CharacterAttackParam;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ECharacterState CharacterState = ECharacterState::Normal;
 	
@@ -69,7 +77,7 @@ protected:
 
 	// 攻撃を受ける
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	bool HitAttack(float Damage, float Impact, FVector AttackDirection, FVector HitPoint);
+	bool HitAttack(const UCharacterAttackParam* AttackParam, FVector Direction, FVector HitPoint);
 	
 	void SetLocalVelocity();
 

@@ -30,9 +30,6 @@ protected:
 	// InputMove イベントハンドラー関数
 	UFUNCTION()
 	void Move(const FInputActionValue& Value);
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Paramater")
-	float MoveSpeed = 100.0f;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FVector LocalMoveInputVector;

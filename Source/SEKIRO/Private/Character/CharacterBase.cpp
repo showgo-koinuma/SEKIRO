@@ -1,4 +1,5 @@
 #include "Character/CharacterBase.h"
+
 #include "AbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -96,7 +97,8 @@ void ACharacterBase::ApplyCharacterState()
 	}
 }
 
-bool ACharacterBase::HitAttack_Implementation(float Damage, float Impact, FVector AttackDirection, FVector HitPoint)
+bool ACharacterBase::HitAttack_Implementation(const UCharacterAttackParam* AttackParam, FVector Direction,
+	FVector HitPoint)
 {
 	return false;
 }
