@@ -1,11 +1,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AbilitySystemComponent.h"
 #include "Engine/DataAsset.h"
 #include "CharacterParameter.generated.h"
 
 UCLASS(BlueprintType)
-class SEKIRO_API UCharacterParameter : public UDataAsset
+class SEKIRO_API UCharacterParameter : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
 
@@ -29,4 +30,8 @@ public:
 	// 振り向き速度
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
 	float TurnSpeed;
+
+	// GameplayEffectを発行し、ステータスを適用する
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void ApplyStatus(const UAbilitySystemComponent* Target);
 };
