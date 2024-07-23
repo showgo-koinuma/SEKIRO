@@ -1,5 +1,9 @@
 #include "Character/EnemyCharacter.h"
 
+AEnemyCharacter::AEnemyCharacter()
+{
+}
+
 void AEnemyCharacter::GetActiveAbilitiesWithTags(const FGameplayTagContainer AbilityTags,
                                                  TArray<UGameplayAbility*>& ActiveAbilities) const
 {

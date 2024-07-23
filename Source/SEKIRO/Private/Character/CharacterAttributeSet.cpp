@@ -1,6 +1,5 @@
 #include "Character/CharacterAttributeSet.h"
 
-UCharacterAttributeSet::UCharacterAttributeSet() :
-Hp(100)
+UCharacterAttributeSet::UCharacterAttributeSet()
 {
 }

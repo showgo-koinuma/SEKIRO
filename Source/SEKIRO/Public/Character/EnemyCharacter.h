@@ -10,6 +10,8 @@ class SEKIRO_API AEnemyCharacter : public ACharacterBase
 	GENERATED_BODY()
 
 public:
+	AEnemyCharacter();
+
 	// 発動中のAbilityを取得
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void GetActiveAbilitiesWithTags(const FGameplayTagContainer AbilityTags, TArray<UGameplayAbility*>& ActiveAbilities) const;
