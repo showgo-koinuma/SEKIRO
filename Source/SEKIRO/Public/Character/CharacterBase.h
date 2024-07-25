@@ -84,4 +84,13 @@ protected:
 private:
 	// TagからStateへ反映させる
 	void ApplyCharacterState();
+
+public:
+	// 死んだときAttributeSetから呼び出される
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void OnDead();
+
+	// 体勢を崩したときAttributeSetから呼び出される
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void OnBrokePosture();
 };

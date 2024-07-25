@@ -11,6 +11,8 @@ GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDynamicMulticastDelegate);
+
 UCLASS()
 class SEKIRO_API UCharacterAttributeSet : public UAttributeSet
 {
@@ -18,6 +20,17 @@ class SEKIRO_API UCharacterAttributeSet : public UAttributeSet
 
 public:
 	UCharacterAttributeSet();
+	
+	// 値が変更されたときに値のClampと判定を行う
+	virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue) override;
+
+	// Hpが0になると発火
+	UPROPERTY(BlueprintAssignable, Category = "Event")
+	FDynamicMulticastDelegate OnDead;
+
+	// 体幹が0になると発火
+	UPROPERTY(BlueprintAssignable, Category = "Event")
+	FDynamicMulticastDelegate OnBrokePosture;
 
 	// 体力
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

@@ -45,6 +45,17 @@ void ACharacterBase::BeginPlay()
 		
 		AbilitySystemComponent->InitAbilityActorInfo(this, this);
 	}
+
+	// Attributeのパラメーターによるアクションにバインド
+	if (CharacterAttributeSet) // nullになるはず無いんだけどなんかエラーでたんだよね
+	{
+		CharacterAttributeSet->OnDead.AddDynamic(this, &ACharacterBase::OnDead);
+		CharacterAttributeSet->OnBrokePosture.AddDynamic(this, &ACharacterBase::OnBrokePosture);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("CharacterAttribute is null"));
+	}
 }
 
 void ACharacterBase::Tick(float DeltaTime)
@@ -73,6 +84,12 @@ void ACharacterBase::BindASCInput()
 	}
 }
 
+bool ACharacterBase::HitAttack_Implementation(const UCharacterAttackParam* AttackParam, FVector Direction,
+	FVector HitPoint)
+{
+	return false;
+}
+
 void ACharacterBase::ApplyCharacterState()
 {
 	if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Hit"))))
@@ -97,10 +114,14 @@ void ACharacterBase::ApplyCharacterState()
 	}
 }
 
-bool ACharacterBase::HitAttack_Implementation(const UCharacterAttackParam* AttackParam, FVector Direction,
-	FVector HitPoint)
+void ACharacterBase::OnDead_Implementation()
 {
-	return false;
+	UKismetSystemLibrary::PrintString(this, "called on dead");
+}
+
+void ACharacterBase::OnBrokePosture_Implementation()
+{
+	UKismetSystemLibrary::PrintString(this, "called on broke posture");
 }
 
 void ACharacterBase::SetLocalVelocity()
