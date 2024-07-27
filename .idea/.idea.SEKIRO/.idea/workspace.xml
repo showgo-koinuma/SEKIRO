@@ -13,12 +13,17 @@
   <component name="ChangeListManager">
     <list default="true" id="920bd9b7-9b61-4d33-835a-a18842f30515" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SEKIRO/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SEKIRO/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/DA_CharacterParameter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/DA_CharacterParameter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEditor.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEditor.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Animation/ABP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Animation/ABP_Player.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Player/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Player/BP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterAttributeSet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Player/DA_PlayerParameter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Player/DA_PlayerParameter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/DA_CharacterAttackParam.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/DA_CharacterAttackParam.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Mannequins/Animations/ABP_Manny.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Mannequins/Animations/ABP_Manny.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Level/MainLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MainLevel.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterAttributeSet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/PlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/PlayerCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/PlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/PlayerCharacter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -496,7 +501,11 @@
       <workItem from="1721730953002" duration="3448000" />
       <workItem from="1721830264458" duration="9365000" />
       <workItem from="1721872849615" duration="3163000" />
-      <workItem from="1721885301540" duration="4384000" />
+      <workItem from="1721885301540" duration="7025000" />
+      <workItem from="1721904075109" duration="2253000" />
+      <workItem from="1721969880263" duration="9261000" />
+      <workItem from="1721984064300" duration="949000" />
+      <workItem from="1722073205310" duration="5068000" />
     </task>
     <servers />
   </component>

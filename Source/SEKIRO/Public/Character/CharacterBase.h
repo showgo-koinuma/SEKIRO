@@ -65,7 +65,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Parameter")
 	UCharacterAttackParam* CharacterAttackParam;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State")
+	bool IsAlive = true;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State")
 	ECharacterState CharacterState = ECharacterState::Normal;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -78,12 +81,24 @@ protected:
 	// 攻撃を受ける
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	bool HitAttack(const UCharacterAttackParam* AttackParam, FVector Direction, FVector HitPoint);
-	
+
+	// 自分視点の速度を求める
 	void SetLocalVelocity();
+
+	UFUNCTION(BlueprintCallable)
+	/** AttributeSetのTurnSpeedを基にTargetに向けて回転させる
+	 * @param VelocityXYMagnitudeSquaring 水平速度の二乗
+	 * @param TargetDirection 向きたい方向
+	 * @param DeltaTime 
+	 */
+	void SetRotationToTarget(const float VelocityXYMagnitudeSquaring, FVector TargetDirection, const float DeltaTime);
 
 private:
 	// TagからStateへ反映させる
 	void ApplyCharacterState();
+
+	// 移動
+	void Movement();
 
 public:
 	// 死んだときAttributeSetから呼び出される

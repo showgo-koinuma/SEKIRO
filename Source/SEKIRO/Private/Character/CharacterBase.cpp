@@ -49,6 +49,7 @@ void ACharacterBase::BeginPlay()
 	// Attributeのパラメーターによるアクションにバインド
 	if (CharacterAttributeSet) // nullになるはず無いんだけどなんかエラーでたんだよね
 	{
+		UKismetSystemLibrary::PrintString(this, *GetName());
 		CharacterAttributeSet->OnDead.AddDynamic(this, &ACharacterBase::OnDead);
 		CharacterAttributeSet->OnBrokePosture.AddDynamic(this, &ACharacterBase::OnBrokePosture);
 	}
@@ -61,8 +62,9 @@ void ACharacterBase::BeginPlay()
 void ACharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	
 	ApplyCharacterState();
+	Movement();
 	SetLocalVelocity();
 }
 
@@ -114,9 +116,37 @@ void ACharacterBase::ApplyCharacterState()
 	}
 }
 
+void ACharacterBase::Movement()
+{
+}
+
+void ACharacterBase::SetRotationToTarget(const float VelocityXYMagnitudeSquaring, FVector TargetDirection, const float DeltaTime)
+{
+	if (VelocityXYMagnitudeSquaring <= 0.01f || !IsAlive) return;
+
+	FVector BaseVector = GetActorForwardVector();
+	TargetDirection.Z = 0;
+	TargetDirection.Normalize();
+	// 現在の角度からTargetまでのなす角
+	const float Degree = FMath::RadiansToDegrees(FMath::Acos(FVector::DotProduct(BaseVector, TargetDirection)));
+	// フレームでの回転量
+	const float RotateAngle = CharacterAttributeSet->TurnSpeed.GetCurrentValue() * DeltaTime;
+
+	// フレームでの回転量がなす角を超えていたらTargetを向く
+	if (Degree <= RotateAngle)
+	{
+		SetActorRotation(TargetDirection.Rotation(), ETeleportType::None);
+		return;
+	}
+	
+	const FVector NextDirection = FVector::SlerpVectorToDirection(BaseVector, TargetDirection, RotateAngle / Degree);
+	SetActorRotation(NextDirection.Rotation(), ETeleportType::None);
+}
+
 void ACharacterBase::OnDead_Implementation()
 {
 	UKismetSystemLibrary::PrintString(this, "called on dead");
+	IsAlive = false;
 }
 
 void ACharacterBase::OnBrokePosture_Implementation()
@@ -126,6 +156,8 @@ void ACharacterBase::OnBrokePosture_Implementation()
 
 void ACharacterBase::SetLocalVelocity()
 {
+	if (!IsAlive) return;
+	
 	// PlayerのForwardからのRotatorのYawを逆にしてLocalとする
 	FRotator Rotator = UKismetMathLibrary::MakeRotFromXY(GetActorForwardVector(), GetActorRightVector());
 	Rotator.Roll = 0;
