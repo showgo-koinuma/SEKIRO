@@ -21,7 +21,13 @@ enum class ECharacterState : uint8
 	// 攻撃を食らっている
 	Hit,
 	// Dodge中
-	Dodge
+	Dodge,
+	// 体幹が崩れている
+	BrokePosture,
+	// 死んでる
+	Dead,
+	// モーション中の無敵時間 今回は忍殺時だけかな
+	DuringMotion
 };
 
 UCLASS()
@@ -64,9 +70,6 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Parameter")
 	UCharacterAttackParam* CharacterAttackParam;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State")
-	bool IsAlive = true;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State")
 	ECharacterState CharacterState = ECharacterState::Normal;

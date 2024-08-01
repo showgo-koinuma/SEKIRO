@@ -12,17 +12,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="920bd9b7-9b61-4d33-835a-a18842f30515" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Animation/AnimationMontage/BrokePosture/GhostSamurai_BrokePosture_Root_Montage.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Animation/AnimationMontage/ShinobiDeathblow/GhostSamurai_Executed05_Montage.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Animation/AnimationMontage/ShinobiDeathblow/GhostSamurai_Execution05_Montage.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BTS_SetCanMove.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/DA_EnemyDeathblowData.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/DA_ShinobiDeathblowData.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/WBP_CanShinobiDeathblowUI.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/Enemy/GA_BrokePosture.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/GA/ShinobiDeatublow/GA_EnemyDeathblow.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/GA/ShinobiDeatublow/GA_EnemyDeathblowed.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Level/MakeSequencerLevel.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SEKIRO/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SEKIRO/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Config/DefaultEditor.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEditor.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultGameplayTags.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultGameplayTags.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Animation/ABP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Animation/ABP_Player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BB_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BB_Enemy.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BTS_CheckDistance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BTS_CheckDistance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BTS_SetFocus.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BT_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BT_Enemy.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/BP_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/BP_Enemy.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Player/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Player/BP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Player/DA_PlayerParameter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Player/DA_PlayerParameter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/DA_CharacterAttackParam.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/DA_CharacterAttackParam.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Mannequins/Animations/ABP_Manny.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Mannequins/Animations/ABP_Manny.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/Enemy/GE_Parried.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/Enemy/GE_Parried.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Level/MainLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MainLevel.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/PlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/PlayerCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/EnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/EnemyCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/PlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/PlayerCharacter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -505,7 +522,12 @@
       <workItem from="1721904075109" duration="2253000" />
       <workItem from="1721969880263" duration="9261000" />
       <workItem from="1721984064300" duration="949000" />
-      <workItem from="1722073205310" duration="5068000" />
+      <workItem from="1722073205310" duration="5069000" />
+      <workItem from="1722245198676" duration="2706000" />
+      <workItem from="1722354584738" duration="1813000" />
+      <workItem from="1722415740322" duration="1711000" />
+      <workItem from="1722486219278" duration="7559000" />
+      <workItem from="1722520562520" duration="340000" />
     </task>
     <servers />
   </component>

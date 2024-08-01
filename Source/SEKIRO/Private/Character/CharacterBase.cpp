@@ -94,7 +94,19 @@ bool ACharacterBase::HitAttack_Implementation(const UCharacterAttackParam* Attac
 
 void ACharacterBase::ApplyCharacterState()
 {
-	if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Hit"))))
+	if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Dead"))))
+	{
+		CharacterState = ECharacterState::Dead;
+	}
+	else if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.DuringMotion"))))
+	{
+		CharacterState = ECharacterState::DuringMotion;
+	}
+	else if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.BrokePosture"))))
+	{
+		CharacterState = ECharacterState::BrokePosture;
+	}
+	else if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Hit"))))
 	{
 		CharacterState = ECharacterState::Hit;
 	}
@@ -122,7 +134,7 @@ void ACharacterBase::Movement()
 
 void ACharacterBase::SetRotationToTarget(const float VelocityXYMagnitudeSquaring, FVector TargetDirection, const float DeltaTime)
 {
-	if (VelocityXYMagnitudeSquaring <= 0.01f || !IsAlive) return;
+	if (VelocityXYMagnitudeSquaring <= 0.01f) return;
 
 	FVector BaseVector = GetActorForwardVector();
 	TargetDirection.Z = 0;
@@ -146,7 +158,6 @@ void ACharacterBase::SetRotationToTarget(const float VelocityXYMagnitudeSquaring
 void ACharacterBase::OnDead_Implementation()
 {
 	UKismetSystemLibrary::PrintString(this, "called on dead");
-	IsAlive = false;
 }
 
 void ACharacterBase::OnBrokePosture_Implementation()
@@ -156,8 +167,6 @@ void ACharacterBase::OnBrokePosture_Implementation()
 
 void ACharacterBase::SetLocalVelocity()
 {
-	if (!IsAlive) return;
-	
 	// PlayerのForwardからのRotatorのYawを逆にしてLocalとする
 	FRotator Rotator = UKismetMathLibrary::MakeRotFromXY(GetActorForwardVector(), GetActorRightVector());
 	Rotator.Roll = 0;

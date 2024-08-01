@@ -3,7 +3,6 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
-#include "GameFramework/PawnMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
 APlayerCharacter::APlayerCharacter(): PlayerIMC(nullptr), MoveIA(nullptr)
@@ -33,6 +32,13 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	{
 		UE_LOG(LogTemp, Error, TEXT("EnhancedInputComponentがない"));
 	}
+}
+
+void APlayerCharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	
 }
 
 void APlayerCharacter::Move(const FInputActionValue& Value)
