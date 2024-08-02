@@ -62,6 +62,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
 	TArray<TSubclassOf<UWaitInputGameplayAbility>> WaitInputAbilities;
 
+	// 武器のコリジョン
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
 	TObjectPtr<UCapsuleComponent> WeaponCollisionCapsule;
 
@@ -78,7 +79,8 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State")
 	ECharacterState CharacterState = ECharacterState::Normal;
-	
+
+	// キャラクターの視点から見た速度
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FVector LocalVelocity;
 
