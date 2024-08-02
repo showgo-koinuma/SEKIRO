@@ -132,9 +132,9 @@ void ACharacterBase::Movement()
 {
 }
 
-void ACharacterBase::SetRotationToTarget(const float VelocityXYMagnitudeSquaring, FVector TargetDirection, const float DeltaTime)
+void ACharacterBase::SetRotationToTarget(FVector TargetDirection, const float DeltaTime)
 {
-	if (VelocityXYMagnitudeSquaring <= 0.01f) return;
+	if (!LookingAtTarget()) return;
 
 	FVector BaseVector = GetActorForwardVector();
 	TargetDirection.Z = 0;
@@ -153,6 +153,23 @@ void ACharacterBase::SetRotationToTarget(const float VelocityXYMagnitudeSquaring
 	
 	const FVector NextDirection = FVector::SlerpVectorToDirection(BaseVector, TargetDirection, RotateAngle / Degree);
 	SetActorRotation(NextDirection.Rotation(), ETeleportType::None);
+}
+
+bool ACharacterBase::LookingAtTarget()
+{
+	switch (CharacterState)
+	{
+	case ECharacterState::Normal:
+	case ECharacterState::Defense:
+	case ECharacterState::Attack:
+		break;
+	default:
+		return false;
+	}
+
+	// todo tagなどによる攻撃中の回転制御
+	
+	return true;
 }
 
 void ACharacterBase::OnDead_Implementation()

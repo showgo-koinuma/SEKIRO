@@ -18,4 +18,8 @@ public:
 	// 衝撃の大きさ
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Impact;
+
+	// 多段ヒット回数
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int AttackHitCount;
 };

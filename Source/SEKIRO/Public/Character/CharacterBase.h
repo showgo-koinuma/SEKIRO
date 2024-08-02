@@ -68,8 +68,13 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Parameter")
 	UCharacterParameter* CharacterParameter;
 
+	// 今の攻撃パラメーター
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Parameter")
 	UCharacterAttackParam* CharacterAttackParam;
+
+	// 攻撃ごとの多段ヒット回数
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Parameter")
+	int CurrentAttackHitCount;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State")
 	ECharacterState CharacterState = ECharacterState::Normal;
@@ -88,13 +93,14 @@ protected:
 	// 自分視点の速度を求める
 	void SetLocalVelocity();
 
-	UFUNCTION(BlueprintCallable)
 	/** AttributeSetのTurnSpeedを基にTargetに向けて回転させる
-	 * @param VelocityXYMagnitudeSquaring 水平速度の二乗
 	 * @param TargetDirection 向きたい方向
-	 * @param DeltaTime 
 	 */
-	void SetRotationToTarget(const float VelocityXYMagnitudeSquaring, FVector TargetDirection, const float DeltaTime);
+	UFUNCTION(BlueprintCallable)
+	void SetRotationToTarget(FVector TargetDirection, const float DeltaTime);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool LookingAtTarget();
 
 private:
 	// TagからStateへ反映させる
