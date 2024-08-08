@@ -117,8 +117,9 @@ void APlayerCharacter::LockOnEnemy()
 		for (TObjectPtr<AActor> Actor : OverlappingActors)
 		{
 			const TObjectPtr<AEnemyCharacter> Enemy = Cast<AEnemyCharacter>(Actor);
-			
-			if (!Enemy) continue;
+
+			// Cast失敗、またはロックオン不可ならcontinue
+			if (!Enemy || !Enemy->IsTargetable()) continue;
 			
 			const float AngleDegrees = FMath::RadiansToDegrees(FMath::Acos(FVector::DotProduct(ControlForward,
 				(Enemy->GetActorLocation() - CurrentPlayerLocation).GetSafeNormal())));
@@ -140,19 +141,16 @@ void APlayerCharacter::LockOnCameraControl(const float DeltaTime)
 	// 対象がいなければ何もしない
 	if (!LockOnTarget.IsValid()) return;
 
-	if (APlayerController* PlayerController = UGameplayStatics::GetPlayerController(this, 0))
+	// 対象がロックオン不可になった、またはロックオン可能な最大距離を超えたらロックオンを解除し終了
+	if (!LockOnTarget->IsTargetable() ||
+		FVector::DistSquared(LockOnTarget->GetActorLocation(), GetActorLocation()) > MaxLockOnRange * MaxLockOnRange)
 	{
-		FVector2D TargetScreenPosition;
-		
-		if (UGameplayStatics::ProjectWorldToScreen(PlayerController, LockOnTarget->GetActorLocation(), TargetScreenPosition))
-		{
-			// オフセットをかける
-			TargetScreenPosition += LockOnScreenPositionOffset;
-			
-		}
-		else // スクリーン内に入って無かった場合
-		{
-			
-		}
+		LockOnTarget = nullptr;
+		return;
 	}
+
+	// カメラの回転原点からTargetへの角度　カメラが回転原点を向いていない場合ちょっと変える必要がありそう
+	const FRotator CameraRotation = (LockOnTarget->GetActorLocation() - SpringArm->GetComponentLocation()).Rotation();
+	// Offsetを加算しながらコントローラーにセットする
+	GetController()->SetControlRotation(CameraRotation + LockOnOffsetRotation);
 }

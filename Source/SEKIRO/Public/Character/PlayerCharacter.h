@@ -54,9 +54,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
 	float MaxLockOnRange;
 
-	// スクリーン座標のオフセット
+	// スクリーン座標のオフセット角度
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	FVector2D LockOnScreenPositionOffset;
+	FRotator LockOnOffsetRotation;
 	
 	// LockOnの対象
 	TWeakObjectPtr<AEnemyCharacter> LockOnTarget;
