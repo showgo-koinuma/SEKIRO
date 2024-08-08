@@ -4,6 +4,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 APlayerCharacter::APlayerCharacter(): PlayerIMC(nullptr), MoveIA(nullptr)
 {
@@ -38,7 +39,7 @@ void APlayerCharacter::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	
+	CameraAnimTick(DeltaSeconds);
 }
 
 void APlayerCharacter::Move(const FInputActionValue& Value)
@@ -61,4 +62,16 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 	LocalMoveInputVector = PlayerRotator.RotateVector(Direction);
 
 	//GetCharacterMovement()->Velocity = Direction * MoveSpeed;
+}
+
+void APlayerCharacter::CameraAnimTick(const float DeltaTime)
+{
+	// カメラアームの長さのアニメーション
+	if (ArmLengthTimer < ArmLengthAnimDuration)
+	{
+		ArmLengthTimer += DeltaTime;
+		const float LerpFactor = FMath::Clamp(ArmLengthTimer / ArmLengthAnimDuration, 0.0f, 1.0f);
+		const float EasedLerpFactor = FMath::InterpEaseInOut(0.0f, 1.0f, LerpFactor, 2);
+		SpringArm->TargetArmLength = LastArmLength + (NewArmLength - LastArmLength) * EasedLerpFactor;
+	}
 }

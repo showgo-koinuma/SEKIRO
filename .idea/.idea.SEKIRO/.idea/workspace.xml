@@ -13,14 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="920bd9b7-9b61-4d33-835a-a18842f30515" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SEKIRO/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SEKIRO/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEditor.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEditor.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BTS_SetCanMove.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/BehaviorTree/BTS_SetCanMove.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/BP_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/BP_Enemy.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Player/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Player/BP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/Enemy/GA_BrokePosture.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/Enemy/GA_BrokePosture.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/GA/ShinobiDeatublow/GA_EnemyDeathblow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/GA/ShinobiDeatublow/GA_EnemyDeathblow.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Level/MainLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MainLevel.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/PlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/PlayerCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/PlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/PlayerCharacter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -510,7 +505,10 @@
       <workItem from="1722486219278" duration="7559000" />
       <workItem from="1722520562520" duration="4467000" />
       <workItem from="1722563034902" duration="635000" />
-      <workItem from="1722565425288" duration="8272000" />
+      <workItem from="1722565425288" duration="8357000" />
+      <workItem from="1722602012401" duration="2676000" />
+      <workItem from="1723011606824" duration="5130000" />
+      <workItem from="1723088764569" duration="2839000" />
     </task>
     <servers />
   </component>
