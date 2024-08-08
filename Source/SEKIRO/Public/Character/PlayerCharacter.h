@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "EnemyCharacter.h"
 #include "Character/CharacterBase.h"
 #include "InputMappingContext.h"
 #include "InputAction.h"
@@ -41,9 +42,36 @@ protected:
 	// カメラアニメーションをTick管理
 	void CameraAnimTick(const float DeltaTime);
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CameraAnimation")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Camera")
 	TObjectPtr<USpringArmComponent> SpringArm;
+	
+//---------------LockOnSystem---------------
+	// LockOn出来る最大角度
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	float MaxLockOnAngle;
+	
+	// LockOn出来る最大距離
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	float MaxLockOnRange;
 
+	// スクリーン座標のオフセット
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	FVector2D LockOnScreenPositionOffset;
+	
+	// LockOnの対象
+	TWeakObjectPtr<AEnemyCharacter> LockOnTarget;
+	
+	// 敵をロックオン、ロックオンしていたら外す
+	UFUNCTION(BlueprintCallable, Category = "LockOn")
+	void LockOnEnemy();
+	
+	// 現在ロックオンしているか
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
+	bool IsLocked() const { return LockOnTarget.IsValid(); }
+
+	void LockOnCameraControl(const float DeltaTime);
+
+//---------------ArmLength---------------
 	// アニメーションタイマー
 	float ArmLengthTimer;
 
@@ -64,5 +92,28 @@ protected:
 		ArmLengthAnimDuration = Duration;
 		NewArmLength = NewValue;
 		LastArmLength = SpringArm->TargetArmLength;
+	}
+
+//---------------ArmLocation---------------
+	// アニメーションタイマー
+	float ArmLocationTimer;
+
+	// アニメーション時間
+	float ArmLocationAnimDuration;
+
+	// アニメーション後の値
+	FVector NewArmLocation;
+
+	// アニメーション開始時の値
+	FVector LastArmLocation;
+	
+	// Sprig Armの長さのアニメーションを開始する
+	UFUNCTION(BlueprintCallable, Category = "CameraAnimation")
+	void SetArmLocationAnim(const FVector NewValue, const float Duration)
+	{
+		ArmLocationTimer = 0;
+		ArmLocationAnimDuration = Duration;
+		NewArmLocation = NewValue;
+		LastArmLocation = SpringArm->GetRelativeLocation();
 	}
 };

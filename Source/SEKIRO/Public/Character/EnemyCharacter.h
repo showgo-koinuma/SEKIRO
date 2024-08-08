@@ -15,4 +15,8 @@ public:
 	// 発動中のAbilityを取得
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void GetActiveAbilitiesWithTags(const FGameplayTagContainer AbilityTags, TArray<UGameplayAbility*>& ActiveAbilities) const;
+
+	// LockOn可能か
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool IsTargetable() const { return CharacterState != ECharacterState::Dead; }
 };
