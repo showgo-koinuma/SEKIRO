@@ -94,6 +94,8 @@ bool ACharacterBase::HitAttack_Implementation(const UCharacterAttackParam* Attac
 
 void ACharacterBase::ApplyCharacterState()
 {
+	if (CharacterState == ECharacterState::Dead) return;
+	
 	if (AbilitySystemComponent->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(FName("Ability.State.Dead"))))
 	{
 		CharacterState = ECharacterState::Dead;
@@ -175,6 +177,8 @@ bool ACharacterBase::LookingAtTarget()
 void ACharacterBase::OnDead_Implementation()
 {
 	UKismetSystemLibrary::PrintString(this, "called on dead");
+
+	CharacterState = ECharacterState::Dead;
 }
 
 void ACharacterBase::OnBrokePosture_Implementation()

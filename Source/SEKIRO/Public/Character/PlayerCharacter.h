@@ -35,6 +35,9 @@ protected:
 	// InputMove イベントハンドラー関数
 	UFUNCTION()
 	void Move(const FInputActionValue& Value);
+
+	// プレイヤーの向く方向を決める
+	void SetPlayerRotation(float DeltaTime);
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FVector LocalMoveInputVector;
@@ -57,6 +60,10 @@ protected:
 	// スクリーン座標のオフセット角度
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
 	FRotator LockOnOffsetRotation;
+
+	// ロックオン中のカメラ回転速度(度/秒)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	float LockOnCameraRotationSpeedDegree;
 	
 	// LockOnの対象
 	TWeakObjectPtr<AEnemyCharacter> LockOnTarget;
@@ -68,6 +75,10 @@ protected:
 	// 現在ロックオンしているか
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
 	bool IsLocked() const { return LockOnTarget.IsValid(); }
+
+	// 現在ロックオンしているEnemyCharacter
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
+	AEnemyCharacter* GetLockedOnEnemy() const {return LockOnTarget.Get();}
 
 	void LockOnCameraControl(const float DeltaTime);
 

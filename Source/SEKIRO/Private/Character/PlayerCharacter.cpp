@@ -3,6 +3,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -40,6 +41,7 @@ void APlayerCharacter::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
+	SetPlayerRotation(DeltaSeconds);
 	LockOnCameraControl(DeltaSeconds);
 	CameraAnimTick(DeltaSeconds);
 }
@@ -64,6 +66,20 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 	LocalMoveInputVector = PlayerRotator.RotateVector(Direction);
 
 	//GetCharacterMovement()->Velocity = Direction * MoveSpeed;
+}
+
+void APlayerCharacter::SetPlayerRotation(float DeltaTime)
+{
+	// ロックオンしているか ロックオンしていなければ
+	if (IsLocked())
+	{
+		GetCharacterMovement()->bOrientRotationToMovement = false;
+		SetRotationToTarget(LockOnTarget->GetActorLocation() - GetActorLocation(), DeltaTime);
+	}
+	else
+	{
+		GetCharacterMovement()->bOrientRotationToMovement = true;
+	}
 }
 
 void APlayerCharacter::CameraAnimTick(const float DeltaTime)
@@ -145,12 +161,17 @@ void APlayerCharacter::LockOnCameraControl(const float DeltaTime)
 	if (!LockOnTarget->IsTargetable() ||
 		FVector::DistSquared(LockOnTarget->GetActorLocation(), GetActorLocation()) > MaxLockOnRange * MaxLockOnRange)
 	{
-		LockOnTarget = nullptr;
+		LockOnEnemy();
 		return;
 	}
 
 	// カメラの回転原点からTargetへの角度　カメラが回転原点を向いていない場合ちょっと変える必要がありそう
 	const FRotator CameraRotation = (LockOnTarget->GetActorLocation() - SpringArm->GetComponentLocation()).Rotation();
+	// ターゲットへの方向ベクトル todo ゆっくり振り向く
+	FVector ToTargetVector = LockOnTarget->GetActorLocation() - SpringArm->GetComponentLocation();
+	FVector CameraForwardVector = GetActorForwardVector();
+	const FVector LockVector = FVector::SlerpVectorToDirection(ToTargetVector, CameraForwardVector,
+		1.0f / 2.0f);
 	// Offsetを加算しながらコントローラーにセットする
 	GetController()->SetControlRotation(CameraRotation + LockOnOffsetRotation);
 }

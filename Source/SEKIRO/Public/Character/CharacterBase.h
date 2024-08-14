@@ -55,6 +55,10 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UCharacterAttributeSet* CharacterAttributeSet;
 
+	// 回生可能回数
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "StaticStatus")
+	int ResurrectionCount;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
 	TArray<TSubclassOf<UGameplayAbility>> CharacterGameplayAbilities;
 

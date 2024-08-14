@@ -39,8 +39,18 @@ public:
 
 	// 体幹
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FGameplayAttributeData Posture;
-	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, Posture);
+	FGameplayAttributeData PosturePoint;
+	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, PosturePoint);
+
+	// 体幹回復速度(秒)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FGameplayAttributeData PostureRegeneration;
+	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, PostureRegeneration);
+
+	// 防御中増加体幹回復速度割合
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FGameplayAttributeData DefensePostureRegenerationRate;
+	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, DefensePostureRegenerationRate);
 
 	// 最大速度
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

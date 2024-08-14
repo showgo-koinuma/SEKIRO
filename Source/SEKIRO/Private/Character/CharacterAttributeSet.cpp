@@ -21,11 +21,11 @@ void UCharacterAttributeSet::PostAttributeChange(const FGameplayAttribute& Attri
 			OnDead.Broadcast();
 		}
 	}
-	else if (Attribute == GetPostureAttribute())
+	else if (Attribute == GetPosturePointAttribute())
 	{
-		Posture.SetCurrentValue(FMath::Clamp(Posture.GetCurrentValue(), 0, Posture.GetBaseValue()));
+		PosturePoint.SetCurrentValue(FMath::Clamp(PosturePoint.GetCurrentValue(), 0, PosturePoint.GetBaseValue()));
 
-		if (Posture.GetCurrentValue() <= 0)
+		if (PosturePoint.GetCurrentValue() <= 0)
 		{
 			OnBrokePosture.Broadcast();
 		}
