@@ -19,4 +19,8 @@ public:
 	// LockOn可能か
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	bool IsTargetable() const { return CharacterState != ECharacterState::Dead; }
+
+	// ロックオンされているか
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool OnLockOned;
 };

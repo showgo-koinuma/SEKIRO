@@ -110,6 +110,7 @@ void APlayerCharacter::LockOnEnemy()
 	// LockOn中なら外すだけ
 	if (IsLocked())
 	{
+		LockOnTarget->OnLockOned = false;
 		LockOnTarget = nullptr;
 		return;
 	}
@@ -149,6 +150,7 @@ void APlayerCharacter::LockOnEnemy()
 		}
 
 		LockOnTarget = SmallestAngleTarget;
+		if (LockOnTarget.IsValid()) LockOnTarget->OnLockOned = true;
 	}
 }
 
@@ -165,13 +167,16 @@ void APlayerCharacter::LockOnCameraControl(const float DeltaTime)
 		return;
 	}
 
-	// カメラの回転原点からTargetへの角度　カメラが回転原点を向いていない場合ちょっと変える必要がありそう
-	const FRotator CameraRotation = (LockOnTarget->GetActorLocation() - SpringArm->GetComponentLocation()).Rotation();
-	// ターゲットへの方向ベクトル todo ゆっくり振り向く
-	FVector ToTargetVector = LockOnTarget->GetActorLocation() - SpringArm->GetComponentLocation();
-	FVector CameraForwardVector = GetActorForwardVector();
-	const FVector LockVector = FVector::SlerpVectorToDirection(ToTargetVector, CameraForwardVector,
-		1.0f / 2.0f);
+	// 現在の正面ベクトル
+	FVector CurrentForward = GetController()->GetControlRotation().Vector();
+	// ターゲットへの方向ベクトル
+	FVector TargetVector = ((LockOnTarget->GetActorLocation() - SpringArm->GetComponentLocation()).Rotation() + LockOnOffsetRotation).Vector();
+	TargetVector.Normalize();
+	// 現在の向きからターゲットへのなす角
+	const float Angle = FMath::RadiansToDegrees(FMath::Acos(FVector::DotProduct(CurrentForward, TargetVector)));
+	// Slerpをかける
+	FVector SlerpedVector = FVector::SlerpNormals(CurrentForward, TargetVector, FMath::Clamp(LockOnCameraRotationSpeed * DeltaTime / Angle, 0, 1));
+	
 	// Offsetを加算しながらコントローラーにセットする
-	GetController()->SetControlRotation(CameraRotation + LockOnOffsetRotation);
+	GetController()->SetControlRotation(SlerpedVector.Rotation());
 }

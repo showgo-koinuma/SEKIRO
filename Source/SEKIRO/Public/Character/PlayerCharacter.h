@@ -63,7 +63,7 @@ protected:
 
 	// ロックオン中のカメラ回転速度(度/秒)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	float LockOnCameraRotationSpeedDegree;
+	float LockOnCameraRotationSpeed;
 	
 	// LockOnの対象
 	TWeakObjectPtr<AEnemyCharacter> LockOnTarget;

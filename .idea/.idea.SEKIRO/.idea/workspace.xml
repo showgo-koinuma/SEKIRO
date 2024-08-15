@@ -12,130 +12,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="920bd9b7-9b61-4d33-835a-a18842f30515" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_group141_pPlane34.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube10.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube102.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube104.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube105.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube106.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube107.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube108.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube109.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube11.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube110.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube112.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube113.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube114.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube115.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube12.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube13.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube131.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube133.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube14.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube142.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube144.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube15.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube16.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube17.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube173.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube174.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube179.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube18.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube180.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube181.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube182.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube183.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube19.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube20.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube21.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube22.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube6.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube7.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube8.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCube9.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCylinder1.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCylinder110.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCylinder16.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCylinder18.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCylinder2.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCylinder25.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCylinder27.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pCylinder29.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pPlane10.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pPlane11.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pPlane12.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pPlane2.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pPlane3.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pPlane30.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pPlane4.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pPlane5.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_pPlane7.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface10.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface101.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface102.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface103.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface104.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface105.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface106.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface107.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface11.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface12.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface13.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface14.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface15.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface16.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface17.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface18.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface19.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface2.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface20.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface21.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface22.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface23.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface24.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface25.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface26.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface27.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface28.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface29.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface30.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface31.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface32.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface33.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface34.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface35.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface4.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface5.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface6.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface68.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface7.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface8.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface86.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface87.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface89.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface90.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface94.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface96.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/TestShrine_polySurface97.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/MapModel/TestModel/standardSurface1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Animation/AnimNotifyState/AN_DeathblowTiming.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/WBP_CanDeathblowUI.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/WBP_LockOnUI.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/GE/GE_PostureRegene.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SEKIRO/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SEKIRO/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultGameplayTags.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultGameplayTags.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/DA_CharacterParameter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/DA_CharacterParameter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEditor.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEditor.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Animation/ABP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Animation/ABP_Player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Animation/AnimationMontage/ShinobiDeathblow/GhostSamurai_Executed05_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Animation/AnimationMontage/ShinobiDeathblow/GhostSamurai_Executed05_Montage.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/BP_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/BP_Enemy.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/DA_EnemyParameter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/DA_EnemyParameter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/WBP_CanShinobiDeathblowUI.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Enemy/WBP_CanShinobiDeathblowUI.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Player/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Player/BP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Player/DA_PlayerParameter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Player/DA_PlayerParameter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/Player/GE_Status.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/Player/GE_Status.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/GE/GE_StatusEffect.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/GE/GE_StatusEffect.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/Character/WBP_CharacterUIBase.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/Character/WBP_CharacterUIBase.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/DA_CharacterAttackParam.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/DA_CharacterAttackParam.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/Enemy/GA_BrokePosture.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/Enemy/GA_BrokePosture.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprint/GAS/GA/ShinobiDeatublow/GA_EnemyDeathblowed.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprint/GAS/GA/ShinobiDeatublow/GA_EnemyDeathblowed.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Level/MainLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Level/MainLevel.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterAttributeSet.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/CharacterBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/PlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Private/Character/PlayerCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterAttributeSet.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterParameter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/CharacterParameter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/EnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/EnemyCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/PlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SEKIRO/Public/Character/PlayerCharacter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -632,7 +527,8 @@
       <workItem from="1723120539980" duration="6303000" />
       <workItem from="1723213708187" duration="4670000" />
       <workItem from="1723297259058" duration="377000" />
-      <workItem from="1723617200140" duration="7953000" />
+      <workItem from="1723617200140" duration="9316000" />
+      <workItem from="1723695466576" duration="12139000" />
     </task>
     <servers />
   </component>

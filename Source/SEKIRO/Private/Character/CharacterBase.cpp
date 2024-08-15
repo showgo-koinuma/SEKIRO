@@ -179,6 +179,7 @@ void ACharacterBase::OnDead_Implementation()
 	UKismetSystemLibrary::PrintString(this, "called on dead");
 
 	CharacterState = ECharacterState::Dead;
+	//StopAnimMontage(GetCurrentMontage()); // montageを停止
 }
 
 void ACharacterBase::OnBrokePosture_Implementation()
