@@ -64,7 +64,7 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 
 	const FRotator PlayerRotator = UKismetMathLibrary::MakeRotator(0, 0, -GetActorRotation().Yaw);
 	LocalMoveInputVector = PlayerRotator.RotateVector(Direction);
-
+	
 	//GetCharacterMovement()->Velocity = Direction * MoveSpeed;
 }
 
@@ -91,7 +91,7 @@ void APlayerCharacter::CameraAnimTick(const float DeltaTime)
 		// lerpの割合となる値
 		const float LerpFactor = FMath::Clamp(ArmLengthTimer / ArmLengthAnimDuration, 0.0f, 1.0f);
 		// 値にイージングをかける
-		const float EasedLerpFactor = FMath::InterpEaseInOut(0.0f, 1.0f, LerpFactor, 2);
+		const float EasedLerpFactor = FMath::InterpEaseOut(0.0f, 1.0f, LerpFactor, ArmAnimEaseExponent);
 		SpringArm->TargetArmLength = LastArmLength + (NewArmLength - LastArmLength) * EasedLerpFactor;
 	}
 
@@ -100,9 +100,51 @@ void APlayerCharacter::CameraAnimTick(const float DeltaTime)
 	{
 		ArmLocationTimer += DeltaTime;
 		const float LerpFactor = FMath::Clamp(ArmLocationTimer / ArmLocationAnimDuration, 0.0f, 1.0f);
-		const float EasedLerpFactor = FMath::InterpEaseInOut(0.0f, 1.0f, LerpFactor, 2);
+		const float EasedLerpFactor = FMath::InterpEaseOut(0.0f, 1.0f, LerpFactor, ArmAnimEaseExponent);
 		SpringArm->SetRelativeLocation(LastArmLocation + (NewArmLocation - LastArmLocation) * EasedLerpFactor);
 	}
+
+	// パリィ忍殺のカメラアニメーション
+	if (ParryDeathblowTimer < ParryDeathblowAnimDuration)
+	{
+		ParryDeathblowTimer += DeltaTime;
+
+		// Pitch
+		float EasedLerpPitch = FMath::InterpEaseOut(static_cast<float>(LastCameraRotator.Pitch), ParryDeathblowFixedPitch,
+			ParryDeathblowTimer / ParryDeathblowAnimDuration, ArmAnimEaseExponent);
+		// Yaw
+		const float LastYaw = static_cast<float>(LastCameraRotator.Yaw);
+		const float EasedLerpYaw = FMath::InterpEaseOut(LastYaw, LastYaw + ParryDeathblowYawToBeAdded,
+			ParryDeathblowTimer / ParryDeathblowAnimDuration, ArmAnimEaseExponent);
+		// set rotation
+		const FRotator EasedLerpRotator = FRotator(EasedLerpPitch, EasedLerpYaw, 0);
+		GetController()->SetControlRotation(EasedLerpRotator);
+	}
+
+	// reset timer
+	if (ResetCameraTimer < ResetCameraTime)
+	{
+		ResetCameraTimer += DeltaTime;
+
+		if (ResetCameraTimer >= ResetCameraTime)
+		{
+			ResetArmLengthAndLocation();
+		}
+	}
+}
+
+void APlayerCharacter::StartResetArm(const float ResetTime)
+{
+	ResetCameraTime = ResetTime;
+	ResetCameraTimer = 0;
+}
+
+void APlayerCharacter::ResetArmLengthAndLocation()
+{
+	SetArmLengthAnim(ArmDefaultLength, 0.2f);
+	SetArmLocationAnim(ArmDefaultLocation, 0.2f);
+	// カメラリセット時にロックオン可能に戻す
+	LookToLockOnTarget = true;
 }
 
 void APlayerCharacter::LockOnEnemy()
@@ -150,14 +192,20 @@ void APlayerCharacter::LockOnEnemy()
 		}
 
 		LockOnTarget = SmallestAngleTarget;
-		if (LockOnTarget.IsValid()) LockOnTarget->OnLockOned = true;
+
+		// ロックオン成功した時の処理
+		if (LockOnTarget.IsValid())
+		{
+			LockOnTarget->OnLockOned = true;
+			LookToLockOnTarget = true;
+		}
 	}
 }
 
 void APlayerCharacter::LockOnCameraControl(const float DeltaTime)
 {
-	// 対象がいなければ何もしない
-	if (!LockOnTarget.IsValid()) return;
+	// 対象がいない、または一時的なカメラ操作中なら何もしない
+	if (!LockOnTarget.IsValid() || !LookToLockOnTarget) return;
 
 	// 対象がロックオン不可になった、またはロックオン可能な最大距離を超えたらロックオンを解除し終了
 	if (!LockOnTarget->IsTargetable() ||
