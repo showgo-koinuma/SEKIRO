@@ -86,10 +86,9 @@ void ACharacterBase::BindASCInput()
 	}
 }
 
-bool ACharacterBase::HitAttack_Implementation(const UCharacterAttackParam* AttackParam, FVector Direction,
-	FVector HitPoint)
+void ACharacterBase::HitAttack_Implementation(const UCharacterAttackParam* AttackParam, FVector Direction,
+	FVector HitPoint, const ACharacterBase* Attacker)
 {
-	return false;
 }
 
 void ACharacterBase::ApplyCharacterState()
@@ -185,6 +184,11 @@ void ACharacterBase::OnDead_Implementation()
 void ACharacterBase::OnBrokePosture_Implementation()
 {
 	UKismetSystemLibrary::PrintString(this, "called on broke posture");
+}
+
+bool ACharacterBase::Parried_Implementation(float Impact)
+{
+	return false;
 }
 
 void ACharacterBase::SetLocalVelocity()

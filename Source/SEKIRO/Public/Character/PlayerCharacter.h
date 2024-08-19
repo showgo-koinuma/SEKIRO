@@ -65,6 +65,10 @@ protected:
 
 	float ResetCameraTimer;
 
+	// カメラリセットアニメーションの長さ
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CameraAnimation")
+	float ResetCameraDuration;
+
 	// カメラリセットのタイマーを始める
 	UFUNCTION(BlueprintCallable, Category = "CameraAnimation")
 	void StartResetArm(const float ResetTime);

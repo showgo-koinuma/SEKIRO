@@ -92,10 +92,19 @@ protected:
 
 	bool bASCInputBound;
 
-	// 攻撃を受ける
+	/** 攻撃を受ける
+	 * @return パリィしたか
+	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	bool HitAttack(const UCharacterAttackParam* AttackParam, FVector Direction, FVector HitPoint);
+	void HitAttack(const UCharacterAttackParam* AttackParam, FVector Direction, FVector HitPoint, const ACharacterBase* Attacker = nullptr);
 
+	/** パリィされたとき
+	 * @param Impact 体幹に与えるダメージ
+	 * @return 体勢が崩れたか
+	 */
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	bool Parried(float Impact);
+	
 	// 自分視点の速度を求める
 	void SetLocalVelocity();
 

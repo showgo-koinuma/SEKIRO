@@ -141,8 +141,8 @@ void APlayerCharacter::StartResetArm(const float ResetTime)
 
 void APlayerCharacter::ResetArmLengthAndLocation()
 {
-	SetArmLengthAnim(ArmDefaultLength, 0.2f);
-	SetArmLocationAnim(ArmDefaultLocation, 0.2f);
+	SetArmLengthAnim(ArmDefaultLength, ResetCameraDuration);
+	SetArmLocationAnim(ArmDefaultLocation, ResetCameraDuration);
 	// カメラリセット時にロックオン可能に戻す
 	LookToLockOnTarget = true;
 }
@@ -204,8 +204,8 @@ void APlayerCharacter::LockOnEnemy()
 
 void APlayerCharacter::LockOnCameraControl(const float DeltaTime)
 {
-	// 対象がいない、または一時的なカメラ操作中なら何もしない
-	if (!LockOnTarget.IsValid() || !LookToLockOnTarget) return;
+	// 対象がいないなら何もしない
+	if (!LockOnTarget.IsValid()) return;
 
 	// 対象がロックオン不可になった、またはロックオン可能な最大距離を超えたらロックオンを解除し終了
 	if (!LockOnTarget->IsTargetable() ||
@@ -214,6 +214,9 @@ void APlayerCharacter::LockOnCameraControl(const float DeltaTime)
 		LockOnEnemy();
 		return;
 	}
+
+	// 特定の状態ならロックオンでカメラ制御しない
+	if (!LookToLockOnTarget) return;
 
 	// 現在の正面ベクトル
 	FVector CurrentForward = GetController()->GetControlRotation().Vector();
