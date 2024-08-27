@@ -1,27 +1,59 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Character/PlayerCamera.h"
 
-// Sets default values
 APlayerCamera::APlayerCamera()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
-// Called when the game starts or when spawned
-void APlayerCamera::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
 void APlayerCamera::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	SpringArmComponent->SetWorldRotation(PlayerController->GetControlRotation());
+	FollowOwnerPlayer(DeltaTime);
 }
 
+void APlayerCamera::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// get owner
+	OwnerPlayer = GetOwner();
+	if (!OwnerPlayer) UE_LOG(LogTemp, Warning, TEXT("Failed to GetOwner"));
+	
+	FindMyComponents();
+	// get player controller
+	PlayerController = GetWorld()->GetFirstPlayerController();
+	if (!PlayerController)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to PlayerController"));
+	}
+	else
+	{
+		// このカメラを有効にする
+		PlayerController->SetViewTarget(this);
+	}
+}
+
+void APlayerCamera::FindMyComponents()
+{
+	SpringArmComponent = FindComponentByClass<USpringArmComponent>();
+	CameraComponent = FindComponentByClass<UCameraComponent>();
+
+	if (!SpringArmComponent || !CameraComponent)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to find Component"));
+		return;
+	}
+
+	// 初期値をデフォルトとして保存
+	DefaultArmLocation = SpringArmComponent->GetComponentLocation();
+	DefaultArmLength = SpringArmComponent->TargetArmLength;
+}
+
+void APlayerCamera::FollowOwnerPlayer(float DeltaTime)
+{
+	const FVector DistanceToOwner = OwnerPlayer->GetActorLocation() - GetActorLocation();
+	//const float Distance = DistanceToOwner.Length();
+	SetActorLocation(GetActorLocation() + FollowOwnerSpeed * DeltaTime * DistanceToOwner);
+}

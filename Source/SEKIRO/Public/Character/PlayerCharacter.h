@@ -6,7 +6,6 @@
 #include "InputMappingContext.h"
 #include "InputAction.h"
 #include "InputActionValue.h"
-#include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "PlayerCharacter.generated.h"
 

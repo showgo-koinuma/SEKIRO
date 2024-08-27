@@ -41,9 +41,9 @@ void APlayerCharacter::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	SetPlayerRotation(DeltaSeconds);
-	LockOnCameraControl(DeltaSeconds);
-	CameraAnimTick(DeltaSeconds);
+	// SetPlayerRotation(DeltaSeconds);
+	// LockOnCameraControl(DeltaSeconds);
+	// CameraAnimTick(DeltaSeconds);
 }
 
 void APlayerCharacter::Move(const FInputActionValue& Value)
