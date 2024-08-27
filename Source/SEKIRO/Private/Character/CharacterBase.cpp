@@ -49,7 +49,6 @@ void ACharacterBase::BeginPlay()
 	// Attributeのパラメーターによるアクションにバインド
 	if (CharacterAttributeSet) // nullになるはず無いんだけどなんかエラーでたんだよね
 	{
-		UKismetSystemLibrary::PrintString(this, *GetName());
 		CharacterAttributeSet->OnDead.AddDynamic(this, &ACharacterBase::OnDead);
 		CharacterAttributeSet->OnBrokePosture.AddDynamic(this, &ACharacterBase::OnBrokePosture);
 	}
@@ -88,6 +87,10 @@ void ACharacterBase::BindASCInput()
 
 void ACharacterBase::HitAttack_Implementation(const UCharacterAttackParam* AttackParam, FVector Direction,
 	FVector HitPoint, const ACharacterBase* Attacker)
+{
+}
+
+void ACharacterBase::ApplyPostureEffect_Implementation(const float AddValue) const
 {
 }
 
@@ -143,7 +146,7 @@ void ACharacterBase::SetRotationToTarget(FVector TargetDirection, const float De
 	// 現在の角度からTargetまでのなす角
 	const float Degree = FMath::RadiansToDegrees(FMath::Acos(FVector::DotProduct(BaseVector, TargetDirection)));
 	// フレームでの回転量
-	const float RotateAngle = CharacterAttributeSet->TurnSpeed.GetCurrentValue() * DeltaTime;
+	const float RotateAngle = CharacterParameter->TurnSpeed * DeltaTime;
 
 	// フレームでの回転量がなす角を超えていたらTargetを向く
 	if (Degree <= RotateAngle)
@@ -171,6 +174,10 @@ bool ACharacterBase::LookingAtTarget()
 	// todo tagなどによる攻撃中の回転制御
 	
 	return true;
+}
+
+void ACharacterBase::ApplyHitGameplayEffect_Implementation(float Damage, float Impact)
+{
 }
 
 void ACharacterBase::OnDead_Implementation()

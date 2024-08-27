@@ -117,6 +117,12 @@ protected:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	bool LookingAtTarget();
 
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void ApplyHitGameplayEffect(float Damage, float Impact);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void ApplyPostureEffect(const float AddValue) const;
+
 private:
 	// TagからStateへ反映させる
 	void ApplyCharacterState();

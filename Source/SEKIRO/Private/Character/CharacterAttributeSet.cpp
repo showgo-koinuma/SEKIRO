@@ -1,5 +1,6 @@
 #include "Character/CharacterAttributeSet.h"
-#include "Character/CharacterBase.h"
+#include "GameplayEffect.h"
+#include "GameplayEffectExtension.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Math/UnrealMath.h"
 
@@ -7,31 +8,26 @@ UCharacterAttributeSet::UCharacterAttributeSet()
 {
 }
 
-void UCharacterAttributeSet::PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue)
+void UCharacterAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
 {
-	Super::PostAttributeChange(Attribute, OldValue, NewValue);
+	Super::PostGameplayEffectExecute(Data);
 
-	// それぞれ変更されたときにClampと判定を行う
-	if (Attribute == GetHpAttribute())
+	if (Data.EvaluatedData.Attribute == GetHpAttribute())
 	{
-		Hp.SetCurrentValue(FMath::Clamp(Hp.GetCurrentValue(), 0, Hp.GetBaseValue()));
+		SetHp(FMath::Clamp(GetHp(), 0.f, GetMaxHp()));
 
-		if (Hp.GetCurrentValue() <= 0)
+		if (GetHp() <= 0.f)
 		{
 			OnDead.Broadcast();
 		}
 	}
-	else if (Attribute == GetPosturePointAttribute())
+	else if (Data.EvaluatedData.Attribute == GetPosturePointAttribute())
 	{
-		PosturePoint.SetCurrentValue(FMath::Clamp(PosturePoint.GetCurrentValue(), 0, PosturePoint.GetBaseValue()));
+		SetPosturePoint(FMath::Clamp(GetPosturePoint(), 0.f, GetMaxPosturePoint()));
 
-		if (PosturePoint.GetCurrentValue() <= 0)
+		if (GetPosturePoint() <= 0.f)
 		{
 			OnBrokePosture.Broadcast();
 		}
-	}
-	else if (Attribute == GetMaxSpeedAttribute())
-	{
-		MaxSpeed.SetCurrentValue(FMath::Max(0, MaxSpeed.GetCurrentValue()));
 	}
 }
