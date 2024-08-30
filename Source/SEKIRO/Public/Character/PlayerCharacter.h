@@ -1,11 +1,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EnemyCharacter.h"
 #include "Character/CharacterBase.h"
 #include "InputMappingContext.h"
 #include "InputAction.h"
 #include "InputActionValue.h"
+#include "PlayerCamera.h"
+#include "Enemy/ITargetableInterface.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "PlayerCharacter.generated.h"
 
@@ -18,6 +19,8 @@ public:
 	APlayerCharacter();
 
 protected:
+	virtual void BeginPlay() override;
+	
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -40,6 +43,22 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FVector LocalMoveInputVector;
+
+	// プレイヤーカメラのクラス
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PlayerCamera")
+	TSubclassOf<APlayerCamera> PlayerCameraClass;
+
+	// プレアイヤーカメラインスタンス
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PlayerCamera")
+	TObjectPtr<APlayerCamera> PlayerCamera;
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerCamera")
+	void LockOn();
+
+
+
+
+	
 
 	// カメラアニメーションをTick管理
 	void CameraAnimTick(const float DeltaTime);
@@ -78,42 +97,42 @@ protected:
 	
 //---------------LockOnSystem---------------
 	// LockOn出来る最大角度
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	float MaxLockOnAngle;
-	
-	// LockOn出来る最大距離
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	float MaxLockOnRange;
-
-	// スクリーン座標のオフセット角度
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	FRotator LockOnOffsetRotation;
-
-	// ロックオン中のカメラ回転速度(度/秒)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	float LockOnCameraRotationSpeed;
-	
-	// LockOnの対象
-	TWeakObjectPtr<AEnemyCharacter> LockOnTarget;
-	
-	// 敵をロックオン、ロックオンしていたら外す
-	UFUNCTION(BlueprintCallable, Category = "LockOn")
-	void LockOnEnemy();
-	
-	// 現在ロックオンしているか
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
-	bool IsLocked() const { return LockOnTarget.IsValid(); }
-
-	// 現在ロックオンしているEnemyCharacter
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
-	AEnemyCharacter* GetLockedOnEnemy() const {return LockOnTarget.Get();}
-
-	void LockOnCameraControl(const float DeltaTime);
-
-	// ロックオン中でも一時的にカメラ操作を解放するためのもの
-	// falseだとカメラを操作できる
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	bool LookToLockOnTarget;
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	// float MaxLockOnAngle;
+	//
+	// // LockOn出来る最大距離
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	// float MaxLockOnRange;
+	//
+	// // スクリーン座標のオフセット角度
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	// FRotator LockOnOffsetRotation;
+	//
+	// // ロックオン中のカメラ回転速度(度/秒)
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	// float LockOnCameraRotationSpeed;
+	//
+	// // LockOnの対象
+	// TScriptInterface<IITargetableInterface> LockOnTarget;
+	//
+	// // 敵をロックオン、ロックオンしていたら外す
+	// UFUNCTION(BlueprintCallable, Category = "LockOn")
+	// void LockOnEnemy();
+	//
+	// // 現在ロックオンしているか
+	// UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
+	// bool IsLocked() const { return LockOnTarget != nullptr; }
+	//
+	// // 現在ロックオンしているEnemyCharacter
+	// // UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
+	// // IITargetableInterface* GetLockedOnEnemy() { return LockOnTarget.GetInterface(); }
+	//
+	// void LockOnCameraControl(const float DeltaTime);
+	//
+	// // ロックオン中でも一時的にカメラ操作を解放するためのもの
+	// // falseだとカメラを操作できる
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	// bool LookToLockOnTarget;
 
 //---------------ArmLength---------------
 	// アニメーションタイマー
@@ -136,7 +155,7 @@ protected:
 		ArmLengthAnimDuration = Duration;
 		NewArmLength = NewValue;
 		LastArmLength = SpringArm->TargetArmLength;
-		LookToLockOnTarget = false;
+		//LookToLockOnTarget = false;
 	}
 
 //---------------ArmLocation---------------
@@ -160,7 +179,7 @@ protected:
 		ArmLocationAnimDuration = Duration;
 		NewArmLocation = NewValue;
 		LastArmLocation = SpringArm->GetRelativeLocation();
-		LookToLockOnTarget = false;
+		//LookToLockOnTarget = false;
 	}
 
 //---------------パリィ忍殺のカメラアニメーション---------------
@@ -207,7 +226,7 @@ protected:
 		SetArmLengthAnim(ParryDeathblowArmLength, ParryDeathblowAnimDuration);
 		SetArmLocationAnim(ParryDeathblowArmLocation, ParryDeathblowAnimDuration);
 		
-		LookToLockOnTarget = false;
+		//LookToLockOnTarget = false;
 		StartResetArm(ParryDeathblowZoomDuration);
 	}
 };

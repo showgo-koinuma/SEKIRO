@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
+#include "Enemy/ITargetableInterface.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "PlayerCamera.generated.h"
@@ -58,42 +59,48 @@ protected:
 	float FollowOwnerSpeed = 0.f;
 
 //-------------------------------LockOnCamera-------------------------------
+private:
+	// ロックオン時のカメラ制御
+	void LockOnCameraControl(const float DeltaTime);
+	
+	// LockOnの対象
+	IITargetableInterface* LockOnTarget = nullptr;
 
-	// // LockOn出来る最大角度
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	// float MaxLockOnAngle;
-	//
-	// // LockOn出来る最大距離
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	// float MaxLockOnRange;
-	//
-	// // スクリーン座標のオフセット角度
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	// FRotator LockOnOffsetRotation;
-	//
-	// // ロックオン中のカメラ回転速度(度/秒)
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	// float LockOnCameraRotationSpeed;
-	//
-	// // LockOnの対象
-	// TWeakObjectPtr<AEnemyCharacter> LockOnTarget;
-	//
-	// // 敵をロックオン、ロックオンしていたら外す
-	// UFUNCTION(BlueprintCallable, Category = "LockOn")
-	// void LockOnEnemy();
-	//
-	// // 現在ロックオンしているか
-	// UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
-	// bool IsLocked() const { return LockOnTarget.IsValid(); }
-	//
-	// // 現在ロックオンしているEnemyCharacter
-	// UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
-	// AEnemyCharacter* GetLockedOnEnemy() const {return LockOnTarget.Get();}
-	//
-	// void LockOnCameraControl(const float DeltaTime);
-	//
-	// // ロックオン中でも一時的にカメラ操作を解放するためのもの
-	// // falseだとカメラを操作できる
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	// bool LookToLockOnTarget;
+	// LockOn対象のActor
+	AActor* LockOnTargetActor = nullptr;
+
+public:
+	// 敵をロックオン、ロックオンしていたら外す
+	UFUNCTION(BlueprintCallable, Category = "LockOn")
+	void LockOn();
+	
+	// 現在ロックオンしているか
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
+	bool IsLocked() const { return LockOnTarget != nullptr; }
+	
+	// 現在ロックオンしているActor
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")
+	const AActor* GetLockedOnTargetActor() const;
+
+protected:
+	// LockOn出来る最大角度
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	float MaxLockOnAngle;
+	
+	// LockOn出来る最大距離
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	float MaxLockOnRange;
+	
+	// スクリーン座標のオフセット角度
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	FRotator LockOnOffsetRotation;
+	
+	// ロックオン中のカメラ回転速度(度/秒)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	float LockOnCameraRotationSpeed;
+	
+	// ロックオン中でも一時的にカメラ操作を解放するためのもの
+	// falseだとカメラを操作できる
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
+	bool LookToLockOnTarget;
 };

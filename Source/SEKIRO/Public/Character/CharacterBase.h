@@ -52,7 +52,8 @@ protected:
 	// IAbilitySystemInterfaceからのoverride
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override { return AbilitySystemComponent; }
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	// CharacterのAttributeSet
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UCharacterAttributeSet* CharacterAttributeSet;
 
 	// 回生可能回数

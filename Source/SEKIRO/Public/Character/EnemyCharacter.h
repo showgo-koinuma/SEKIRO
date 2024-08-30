@@ -2,10 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "Character/CharacterBase.h"
+#include "Enemy/ITargetableInterface.h"
 #include "EnemyCharacter.generated.h"
 
 UCLASS()
-class SEKIRO_API AEnemyCharacter : public ACharacterBase
+class SEKIRO_API AEnemyCharacter : public ACharacterBase, public IITargetableInterface
 {
 	GENERATED_BODY()
 
@@ -18,9 +19,10 @@ public:
 
 	// LockOn可能か
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	bool IsTargetable() const { return CharacterState != ECharacterState::Dead; }
-
-	// ロックオンされているか
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	bool OnLockOned;
+	virtual bool IsTargetable() const override { return CharacterState != ECharacterState::Dead; }
+	
+	virtual FVector GetTargetLocation() const override { return GetActorLocation(); }
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	virtual bool GetIsTargeting() const override { return IsTargeted; }
 };
