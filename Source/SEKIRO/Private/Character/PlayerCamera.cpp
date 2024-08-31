@@ -190,6 +190,18 @@ void APlayerCamera::SetArmLocationAnim(const FVector RelativeValue, const float 
 	LocationAnimTimer = 0;
 }
 
+void APlayerCamera::SetCameraPitchAddYawAnim(const float NewPitch, const float AddYawValue, const float Duration)
+{
+	TargetPitch = NewPitch;
+	LastPitch = PlayerController->GetControlRotation().Pitch;
+	// 半分以上のときマイナスにする
+	if (LastPitch > 180) LastPitch -= 360;
+	AddYaw = AddYawValue;
+	LastYaw = PlayerController->GetControlRotation().Yaw;
+	PitchAnimDuration = Duration;
+	PitchAnimTimer = 0;
+}
+
 void APlayerCamera::CameraAnimControl(const float DeltaTime)
 {
 	// TargetArmLengthのアニメーション
@@ -231,12 +243,32 @@ void APlayerCamera::CameraAnimControl(const float DeltaTime)
 			TargetLocationOffset = TargetLocation;
 		}
 
-		UE_LOG(LogTemp, Log, TEXT("%s"), *TargetLocationOffset.ToString());
-
 		// 維持時間終了時にデフォルトに戻ってなかったらリセットする
-		if (!FMath::IsNearlyEqual(0.f, TargetLocationOffset.Length()))
+		if (LocationAnimTimer >= LocationAnimDuration &&
+			!FMath::IsNearlyEqual(0.f, TargetLocationOffset.Length()))
 		{
-			SetArmLocationAnim(FVector(0, 0, 0), CameraAnimTime);
+			SetArmLocationAnim(FVector(), CameraAnimTime);
+		}
+	}
+
+	if (PitchAnimTimer < PitchAnimDuration)
+	{
+		LookToLockOnTarget = false;
+		PitchAnimTimer += DeltaTime;
+		
+		// カメラ移動中だけカメラ向きを強制する
+		if (PitchAnimTimer <= CameraAnimTime)
+		{
+			const float Alpha = CameraAnimCurve->GetFloatValue(PitchAnimTimer / CameraAnimTime);
+			FRotator Rot = PlayerController->GetControlRotation();
+			Rot.Pitch = LastPitch + (TargetPitch - LastPitch) * Alpha;
+			Rot.Yaw = LastYaw + AddYaw * Alpha;
+			PlayerController->SetControlRotation(Rot);
+		}
+
+		if (PitchAnimTimer >= PitchAnimDuration)
+		{
+			LookToLockOnTarget = true;
 		}
 	}
 }

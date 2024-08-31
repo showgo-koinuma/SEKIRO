@@ -126,6 +126,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CameraAnimation")
 	void SetArmLocationAnim(const FVector RelativeValue, const float Duration);
 
+	/**カメラピッチのアニメーション
+	 * @param NewPitch 目標のピッチ
+	 * @param AddYawValue 追加するYawの値
+	 * @param Duration 目標の値である時間、ロックオンが外れる時間 */
+	UFUNCTION(BlueprintCallable, Category = "CameraAnimation")
+	void SetCameraPitchAddYawAnim(const float NewPitch, const float AddYawValue, const float Duration);
+
 	// カメラアニメーションの長さ
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "CameraAnimation")
 	float CameraAnimTime = 1.f;
@@ -162,4 +169,20 @@ private:
 	float LocationAnimDuration;
 
 	float LocationAnimTimer;
+
+	// PitchAnim初期値
+	float TargetPitch;
+
+	// PitchAnim最終値
+	float LastPitch;
+
+	// YawAnim初期値
+	float AddYaw;
+
+	// YawAnim最終値
+	float LastYaw;
+
+	float PitchAnimDuration;
+
+	float PitchAnimTimer;
 };
