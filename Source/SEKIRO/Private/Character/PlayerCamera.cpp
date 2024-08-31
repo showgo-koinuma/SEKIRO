@@ -14,6 +14,7 @@ void APlayerCamera::Tick(float DeltaTime)
 	SpringArmComponent->SetWorldRotation(PlayerController->GetControlRotation());
 	FollowOwnerPlayer(DeltaTime);
 	LockOnCameraControl(DeltaTime);
+	CameraAnimControl(DeltaTime);
 }
 
 void APlayerCamera::BeginPlay()
@@ -56,11 +57,12 @@ void APlayerCamera::FindMyComponents()
 
 void APlayerCamera::FollowOwnerPlayer(float DeltaTime)
 {
-	const float DistanceMag = FVector::Distance(OwnerPlayer->GetActorLocation() + TargetLocationOffset, GetActorLocation());
+	const FVector OffsetVector = OwnerPlayer->GetActorRotation().RotateVector(TargetLocationOffset);
+	const float DistanceMag = FVector::Distance(OwnerPlayer->GetActorLocation() + OffsetVector, GetActorLocation());
 	// Curveに反映させる
 	const float Alpha = CameraAnimCurve->GetFloatValue(FMath::Clamp(DistanceMag / MaxFollowSpeedDistance, 0.f, 1.f));
 	
-	SetActorLocation(GetActorLocation() + FollowOwnerSpeed * Alpha * DeltaTime * (OwnerPlayer->GetActorLocation() + TargetLocationOffset - GetActorLocation()));
+	SetActorLocation(GetActorLocation() + FollowOwnerSpeed * Alpha * DeltaTime * (OwnerPlayer->GetActorLocation() + OffsetVector - GetActorLocation()));
 }
 
 void APlayerCamera::LockOnCameraControl(const float DeltaTime)
@@ -170,4 +172,71 @@ void APlayerCamera::LockOn()
 const AActor* APlayerCamera::GetLockedOnTargetActor() const
 {
 	return LockOnTargetActor;
+}
+
+void APlayerCamera::SetArmLengthAnim(const float RelativeValue, const float Duration)
+{
+	TargetLength = DefaultArmLength + RelativeValue;
+	LastLength = SpringArmComponent->TargetArmLength;
+	LengthAnimDuration = Duration;
+	LengthAnimTimer = 0;
+}
+
+void APlayerCamera::SetArmLocationAnim(const FVector RelativeValue, const float Duration)
+{
+	TargetLocation = RelativeValue;
+	LastLocation = TargetLocationOffset;
+	LocationAnimDuration = Duration;
+	LocationAnimTimer = 0;
+}
+
+void APlayerCamera::CameraAnimControl(const float DeltaTime)
+{
+	// TargetArmLengthのアニメーション
+	if (LengthAnimTimer < LengthAnimDuration) // 維持時間中
+	{
+		LengthAnimTimer += DeltaTime;
+
+		if (LengthAnimTimer <= CameraAnimTime) // アニメーション中
+		{
+			// カーブを掛けて適用する
+			const float Alpha = CameraAnimCurve->GetFloatValue(LengthAnimTimer / CameraAnimTime);
+			SpringArmComponent->TargetArmLength = LastLength + (TargetLength - LastLength) * Alpha;
+		}
+		else
+		{
+			SpringArmComponent->TargetArmLength = TargetLength;
+		}
+
+		// 維持時間終了時にデフォルトに戻ってなかったらリセットを掛ける
+		if (LengthAnimTimer >= LengthAnimDuration &&
+			!FMath::IsNearlyEqual(DefaultArmLength, SpringArmComponent->TargetArmLength))
+		{
+			SetArmLengthAnim(0, CameraAnimTime);
+		}
+	}
+
+	// ArmLocationのアニメーション
+	if (LocationAnimTimer < LocationAnimDuration)
+	{
+		LocationAnimTimer += DeltaTime;
+
+		if (LocationAnimTimer <= CameraAnimTime) // アニメーション中
+		{
+			const float Alpha = CameraAnimCurve->GetFloatValue(LocationAnimTimer / CameraAnimTime);
+			TargetLocationOffset = LastLocation + Alpha * (TargetLocation - LastLocation);
+		}
+		else
+		{
+			TargetLocationOffset = TargetLocation;
+		}
+
+		UE_LOG(LogTemp, Log, TEXT("%s"), *TargetLocationOffset.ToString());
+
+		// 維持時間終了時にデフォルトに戻ってなかったらリセットする
+		if (!FMath::IsNearlyEqual(0.f, TargetLocationOffset.Length()))
+		{
+			SetArmLocationAnim(FVector(0, 0, 0), CameraAnimTime);
+		}
+	}
 }

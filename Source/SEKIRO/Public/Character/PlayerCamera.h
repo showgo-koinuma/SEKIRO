@@ -46,15 +46,6 @@ private:
 	void FollowOwnerPlayer(float DeltaTime);
 	
 	TSoftObjectPtr<APlayerController> PlayerController;
-	
-	// デフォルトのSpringArm位置
-	FVector DefaultArmLocation;
-
-	// 追従位置のオフセット
-	FVector TargetLocationOffset = FVector();
-	
-	// デフォルトのSpringArmの長さ
-	float DefaultArmLength = 0.f;
 
 protected:
 	// 感度
@@ -70,6 +61,7 @@ protected:
 	float MaxFollowSpeedDistance = 0.f;
 
 //-------------------------------LockOnCamera-------------------------------
+	
 private:
 	// ロックオン時のカメラ制御
 	void LockOnCameraControl(const float DeltaTime);
@@ -118,4 +110,56 @@ protected:
 	// falseだとカメラを操作できる
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
 	bool LookToLockOnTarget;
+
+//-------------------------------CameraAnimation-------------------------------
+
+public:
+	/** Armの長さのアニメーション
+	 * @param RelativeValue 目標のデフォルトからの差分
+	 * @param Duration 目標の値である時間 */
+	UFUNCTION(BlueprintCallable, Category = "CameraAnimation")
+	void SetArmLengthAnim(const float RelativeValue, const float Duration);
+
+	/** Arm位置のアニメーション
+	 * @param RelativeValue 目標のデフォルトからの差分
+	 * @param Duration 目標の値である時間 */
+	UFUNCTION(BlueprintCallable, Category = "CameraAnimation")
+	void SetArmLocationAnim(const FVector RelativeValue, const float Duration);
+
+	// カメラアニメーションの長さ
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "CameraAnimation")
+	float CameraAnimTime = 1.f;
+
+private:
+	// Tick内でカメラアニメーションを制御する
+	void CameraAnimControl(const float DeltaTime);
+	
+	// デフォルトのSpringArmの長さ
+	float DefaultArmLength = 0.f;
+
+	// Animの最終値
+	float TargetLength;
+
+	// Animの初期値
+	float LastLength;
+
+	float LengthAnimDuration;
+
+	float LengthAnimTimer;
+	
+	// デフォルトのSpringArm位置
+	FVector DefaultArmLocation;
+
+	// 追従位置のオフセット
+	FVector TargetLocationOffset = FVector();
+
+	// Animの最終値
+	FVector TargetLocation;
+
+	// Animの初期値
+	FVector LastLocation;
+
+	float LocationAnimDuration;
+
+	float LocationAnimTimer;
 };
