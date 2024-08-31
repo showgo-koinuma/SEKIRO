@@ -22,12 +22,16 @@ protected:
 	virtual void BeginPlay() override;
 
 	// SpringArm
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<USpringArmComponent> SpringArmComponent;
 
 	// Camera
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UCameraComponent> CameraComponent;
+
+	// カメラのアニメーションカーブ
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TObjectPtr<UCurveFloat> CameraAnimCurve;
 
 	// 追従するプレイヤー
 	TSoftObjectPtr<AActor> OwnerPlayer;
@@ -45,6 +49,9 @@ private:
 	
 	// デフォルトのSpringArm位置
 	FVector DefaultArmLocation;
+
+	// 追従位置のオフセット
+	FVector TargetLocationOffset = FVector();
 	
 	// デフォルトのSpringArmの長さ
 	float DefaultArmLength = 0.f;
@@ -57,6 +64,10 @@ protected:
 	// 対象を追従するスピード
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CameraParam")
 	float FollowOwnerSpeed = 0.f;
+
+	// 追従スピードが最大となる距離
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "CameraParam")
+	float MaxFollowSpeedDistance = 0.f;
 
 //-------------------------------LockOnCamera-------------------------------
 private:
@@ -95,9 +106,13 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
 	FRotator LockOnOffsetRotation;
 	
-	// ロックオン中のカメラ回転速度(度/秒)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	float LockOnCameraRotationSpeed;
+	// ロックオン中のカメラ最大回転速度(度/秒)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LockOn")
+	float LockOnCameraRotationMaxSpeed;
+
+	// ロックオンカメラの最大速度になる角度
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "LockOn")
+	float MaxRotationSpeedAngle;
 	
 	// ロックオン中でも一時的にカメラ操作を解放するためのもの
 	// falseだとカメラを操作できる

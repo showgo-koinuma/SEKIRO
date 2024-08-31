@@ -247,7 +247,7 @@ void APlayerCharacter::ResetArmLengthAndLocation()
 // 	// 現在の向きからターゲットへのなす角
 // 	const float Angle = FMath::RadiansToDegrees(FMath::Acos(FVector::DotProduct(CurrentForward, TargetVector)));
 // 	// Slerpをかける
-// 	FVector SlerpedVector = FVector::SlerpNormals(CurrentForward, TargetVector, FMath::Clamp(LockOnCameraRotationSpeed * DeltaTime / Angle, 0, 1));
+// 	FVector SlerpedVector = FVector::SlerpNormals(CurrentForward, TargetVector, FMath::Clamp(LockOnCameraRotationMaxSpeed * DeltaTime / Angle, 0, 1));
 // 	
 // 	// Offsetを加算しながらコントローラーにセットする
 // 	GetController()->SetControlRotation(SlerpedVector.Rotation());

@@ -110,7 +110,7 @@ protected:
 	//
 	// // ロックオン中のカメラ回転速度(度/秒)
 	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LockOn")
-	// float LockOnCameraRotationSpeed;
+	// float LockOnCameraRotationMaxSpeed;
 	//
 	// // LockOnの対象
 	// TScriptInterface<IITargetableInterface> LockOnTarget;

@@ -56,9 +56,11 @@ void APlayerCamera::FindMyComponents()
 
 void APlayerCamera::FollowOwnerPlayer(float DeltaTime)
 {
-	const FVector DistanceToOwner = OwnerPlayer->GetActorLocation() - GetActorLocation();
-	//const float Distance = DistanceToOwner.Length();
-	SetActorLocation(GetActorLocation() + FollowOwnerSpeed * DeltaTime * DistanceToOwner);
+	const float DistanceMag = FVector::Distance(OwnerPlayer->GetActorLocation() + TargetLocationOffset, GetActorLocation());
+	// Curveに反映させる
+	const float Alpha = CameraAnimCurve->GetFloatValue(FMath::Clamp(DistanceMag / MaxFollowSpeedDistance, 0.f, 1.f));
+	
+	SetActorLocation(GetActorLocation() + FollowOwnerSpeed * Alpha * DeltaTime * (OwnerPlayer->GetActorLocation() + TargetLocationOffset - GetActorLocation()));
 }
 
 void APlayerCamera::LockOnCameraControl(const float DeltaTime)
@@ -84,8 +86,20 @@ void APlayerCamera::LockOnCameraControl(const float DeltaTime)
 	TargetVector.Normalize();
 	// 現在の向きからターゲットへのなす角
 	const float Angle = FMath::RadiansToDegrees(FMath::Acos(FVector::DotProduct(CurrentForward, TargetVector)));
-	// Slerpをかける
-	FVector SlerpedVector = FVector::SlerpNormals(CurrentForward, TargetVector, FMath::Clamp(LockOnCameraRotationSpeed * DeltaTime / Angle, 0, 1));
+	FVector SlerpedVector;
+	
+	if (Angle >= MaxRotationSpeedAngle)
+	{
+		// 最大回転速度
+		SlerpedVector = FVector::SlerpNormals(CurrentForward, TargetVector,
+			FMath::Clamp(LockOnCameraRotationMaxSpeed * DeltaTime / Angle, 0, 1));
+	}
+	else
+	{
+		const float CurveValue = CameraAnimCurve->GetFloatValue(Angle / MaxRotationSpeedAngle);
+		SlerpedVector = FVector::SlerpNormals(CurrentForward, TargetVector,
+			FMath::Clamp(LockOnCameraRotationMaxSpeed * CurveValue * DeltaTime / Angle, 0, 1));
+	}
 	
 	// Offsetを加算しながらコントローラーにセットする
 	PlayerController->SetControlRotation(SlerpedVector.Rotation());
@@ -99,7 +113,6 @@ void APlayerCamera::LockOn()
 		LockOnTarget->SetIsTargeting(false);
 		LockOnTarget = nullptr;
 		LockOnTargetActor = nullptr;
-		UE_LOG(LogTemp, Log, TEXT("ロックオン解除"));
 		return;
 	}
 
@@ -133,8 +146,6 @@ void APlayerCamera::LockOn()
 			const float AngleDegrees = FMath::RadiansToDegrees(FMath::Acos(FVector::DotProduct(ControlForward,
 				(Target->GetTargetLocation() - CurrentCameraLocation).GetSafeNormal())));
 
-			UE_LOG(LogTemp, Log, TEXT("%f, %f"), AngleDegrees, FVector::Distance(Target->GetTargetLocation(), CurrentCameraLocation));
-
 			// 最初の敵、またはなす角が最も小さければ入れ替える
 			if ((!SmallestAngleTarget || SmallestAngle > AngleDegrees) && AngleDegrees < MaxLockOnAngle)
 			{
@@ -152,7 +163,6 @@ void APlayerCamera::LockOn()
 		{
 			LockOnTarget->SetIsTargeting(true);
 			LookToLockOnTarget = true;
-			UE_LOG(LogTemp, Log, TEXT("ロックオン成功"));
 		}
 	}
 }
