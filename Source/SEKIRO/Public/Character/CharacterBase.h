@@ -71,9 +71,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
 	TObjectPtr<UCapsuleComponent> WeaponCollisionCapsule;
 
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Parameter")
 	UCharacterParameter* CharacterParameter;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State")
+	ECharacterState CharacterState = ECharacterState::Normal;
 
+protected:
 	// 今の攻撃パラメーター
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Parameter")
 	UCharacterAttackParam* CharacterAttackParam;
@@ -81,9 +86,6 @@ protected:
 	// 攻撃ごとの多段ヒット回数
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Parameter")
 	int CurrentAttackHitCount;
-	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State")
-	ECharacterState CharacterState = ECharacterState::Normal;
 
 	// キャラクターの視点から見た速度
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
