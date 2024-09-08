@@ -76,6 +76,10 @@ public:
 	// 敵をロックオン、ロックオンしていたら外す
 	UFUNCTION(BlueprintCallable, Category = "LockOn")
 	void LockOn();
+
+	// ロックオンを強制的に解除する
+	UFUNCTION(BlueprintCallable, Category = "LockOn")
+	void LockOff();
 	
 	// 現在ロックオンしているか
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "LockOn")

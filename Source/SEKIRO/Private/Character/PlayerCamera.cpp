@@ -169,6 +169,15 @@ void APlayerCamera::LockOn()
 	}
 }
 
+void APlayerCamera::LockOff()
+{
+	// ロックオンしていたら外すだけ
+	if (IsLocked())
+	{
+		LockOn();
+	}
+}
+
 const AActor* APlayerCamera::GetLockedOnTargetActor() const
 {
 	return LockOnTargetActor;

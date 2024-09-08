@@ -56,6 +56,9 @@ void ACharacterBase::BeginPlay()
 	{
 		UE_LOG(LogTemp, Error, TEXT("CharacterAttribute is null"));
 	}
+
+	// ターンスピードの設定
+	GetCharacterMovement()->RotationRate = FRotator(0, CharacterParameter->TurnSpeed, 0);
 }
 
 void ACharacterBase::Tick(float DeltaTime)

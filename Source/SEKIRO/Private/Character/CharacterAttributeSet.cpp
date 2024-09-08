@@ -1,8 +1,6 @@
 #include "Character/CharacterAttributeSet.h"
 #include "GameplayEffect.h"
 #include "GameplayEffectExtension.h"
-#include "Kismet/KismetSystemLibrary.h"
-#include "Math/UnrealMath.h"
 
 UCharacterAttributeSet::UCharacterAttributeSet()
 {
