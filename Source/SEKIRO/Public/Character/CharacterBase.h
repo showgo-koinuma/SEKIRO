@@ -117,6 +117,7 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void SetRotationToTarget(FVector TargetDirection, const float DeltaTime);
 
+	// 回転していい状態化の判定
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	bool LookingAtTarget();
 
