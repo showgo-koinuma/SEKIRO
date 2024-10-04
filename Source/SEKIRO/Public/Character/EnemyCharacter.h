@@ -13,11 +13,14 @@ class SEKIRO_API AEnemyCharacter : public ACharacterBase, public IITargetableInt
 public:
 	AEnemyCharacter();
 
+	virtual void Tick(float DeltaSeconds) override;
+
 	// 発動中のAbilityを取得
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void GetActiveAbilitiesWithTags(const FGameplayTagContainer AbilityTags, TArray<UGameplayAbility*>& ActiveAbilities) const;
 
-	// LockOn可能か
+	// LockOn
+	
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	virtual bool IsTargetable() const override { return CharacterState != ECharacterState::Dead; }
 	
@@ -25,4 +28,13 @@ public:
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	virtual bool GetIsTargeting() const override { return IsTargeted; }
+
+	//EnemyRotate
+
+	// EnemyのRotationの設定
+	UFUNCTION(BlueprintCallable)
+	void SetEnemyRotate(float DeltaTime);
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<AActor> TargetActor = nullptr;
 };

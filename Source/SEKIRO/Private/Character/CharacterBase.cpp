@@ -143,7 +143,6 @@ void ACharacterBase::SetRotationToTarget(FVector TargetDirection, const float De
 {
 	if (!LookingAtTarget()) return;
 
-	UE_LOG(LogTemp, Log, TEXT("SetRotationToTarget"));
 	FVector BaseVector = GetActorForwardVector();
 	TargetDirection.Z = 0;
 	TargetDirection.Normalize();

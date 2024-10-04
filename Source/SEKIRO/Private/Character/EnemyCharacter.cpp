@@ -1,7 +1,15 @@
 #include "Character/EnemyCharacter.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
+}
+
+void AEnemyCharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	SetEnemyRotate(DeltaSeconds);
 }
 
 void AEnemyCharacter::GetActiveAbilitiesWithTags(const FGameplayTagContainer AbilityTags,
@@ -18,5 +26,19 @@ void AEnemyCharacter::GetActiveAbilitiesWithTags(const FGameplayTagContainer Abi
 		{
 			ActiveAbilities.Add(Cast<UGameplayAbility>(ActiveAbility));
 		}
+	}
+}
+
+void AEnemyCharacter::SetEnemyRotate(float DeltaTime)
+{
+	// Targetがいるならその方向、いないなら進行方向を向く
+	if (TargetActor)
+	{
+		GetCharacterMovement()->bOrientRotationToMovement = false;
+		SetRotationToTarget(TargetActor->GetActorLocation() - GetActorLocation(), DeltaTime);
+	}
+	else
+	{
+		GetCharacterMovement()->bOrientRotationToMovement = true;
 	}
 }
